@@ -1,0 +1,258 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Nikosh', 'Noto Serif Bengali', 'SolaimanLipi', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Nikosh', 'Noto Serif Bengali', 'SolaimanLipi', ui-monospace, monospace;
+}
+
+@layer base {
+  html,
+  body,
+  button,
+  input,
+  select,
+  textarea {
+    font-family: 'Nikosh', 'Noto Serif Bengali', 'SolaimanLipi', ui-sans-serif, system-ui, sans-serif;
+  }
+
+  body {
+    background-color: #faf7f9;
+    color: #0f172a;
+    -webkit-font-smoothing: antialiased;
+    overscroll-behavior-y: contain;
+  }
+
+  code,
+  pre {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+}
+
+.font-nikosh,
+.font-nikosh * {
+  font-family: 'Nikosh', 'Noto Serif Bengali', 'SolaimanLipi', serif;
+}
+
+/* Smooth horizontal strip scroll without visual clutter */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@media print {
+  @page {
+    margin: 0;
+  }
+
+  @page a4-portrait {
+    size: A4 portrait;
+    margin: 0;
+  }
+
+  @page a4-landscape {
+    size: A4 landscape;
+    margin: 0;
+  }
+
+  html {
+    font-size: 16px !important;
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .app-print-shell {
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: none !important;
+    width: 100% !important;
+  }
+
+  .app-print-canvas {
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .official-print-scroll-wrap {
+    overflow: visible !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .official-print-pages-host {
+    transform: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: 0 !important;
+    min-width: 0 !important;
+    width: 100% !important;
+    display: block !important;
+  }
+
+  .report-a4-page,
+  .official-a4-page {
+    box-shadow: none !important;
+    border: none !important;
+    margin: 0 auto !important;
+    overflow: hidden !important;
+    page-break-after: always;
+    break-after: page;
+  }
+
+  .official-a4-page--portrait {
+    page: a4-portrait;
+    width: 210mm !important;
+    height: 296.8mm !important;
+  }
+
+  .official-a4-page--landscape {
+    page: a4-landscape;
+    width: 297mm !important;
+    height: 209.8mm !important;
+  }
+
+  .report-a4-page:last-child,
+  .official-a4-page:last-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
+}
+
+.official-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+.official-table th,
+.official-table td {
+  border: 1px solid #1e293b;
+  padding: 4px 5px;
+  vertical-align: middle;
+  line-height: 1.38;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+.official-table thead {
+  display: table-header-group;
+}
+
+.official-table thead th {
+  background-color: #f8fafc;
+  font-weight: 700;
+  text-align: center;
+  color: #0f172a;
+}
+
+.official-table tr,
+.official-table td,
+.official-table th {
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+.gsi-material-button {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -webkit-appearance: none;
+  background-color: #ffffff;
+  background-image: none;
+  border: 1px solid #747775;
+  border-radius: 12px;
+  box-sizing: border-box;
+  color: #1f1f1f;
+  cursor: pointer;
+  font-family: 'Nikosh', 'Noto Serif Bengali', 'Roboto', arial, sans-serif;
+  font-size: 14px;
+  height: 42px;
+  letter-spacing: 0.25px;
+  outline: none;
+  overflow: hidden;
+  padding: 0 14px;
+  position: relative;
+  text-align: center;
+  transition: background-color 0.218s, border-color 0.218s, box-shadow 0.218s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+  max-width: 100%;
+  min-width: min-content;
+}
+
+.gsi-material-button .gsi-material-button-icon {
+  height: 20px;
+  margin-right: 10px;
+  min-width: 20px;
+  width: 20px;
+}
+
+.gsi-material-button .gsi-material-button-content-wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  height: 100%;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+
+.gsi-material-button .gsi-material-button-contents {
+  flex-grow: 1;
+  font-family: 'Nikosh', 'Noto Serif Bengali', 'Roboto', arial, sans-serif;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: top;
+}
+
+.gsi-material-button .gsi-material-button-state {
+  transition: opacity 0.218s;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.gsi-material-button:disabled {
+  cursor: not-allowed;
+  background-color: #ffffff61;
+  border-color: #1f1f1f1f;
+}
+
+.gsi-material-button:disabled .gsi-material-button-contents,
+.gsi-material-button:disabled .gsi-material-button-icon {
+  opacity: 0.38;
+}
+
+.gsi-material-button:not(:disabled):hover {
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+}
+
+.gsi-material-button:not(:disabled):hover .gsi-material-button-state {
+  background-color: #303030;
+  opacity: 0.08;
+}

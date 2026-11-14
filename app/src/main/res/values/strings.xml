@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">খাদ্যশস্য বরাদ্দ ও বিতরণ</string>
+    <string name="offline_title">অ্যাপ লোড করা যায়নি</string>
+    <string name="offline_message">পুনরায় লোড করতে নিচের বাটনে চাপ দিন।</string>
+    <string name="retry_button">আবার চেষ্টা করুন</string>
+</resources>
