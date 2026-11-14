@@ -1,0 +1,54 @@
+name: Extract ZIP to Repository
+
+on:
+  push:
+    paths:
+      - '*.zip'
+      - '**/*.zip'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  extract-zip:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Extract ZIP and remove archive
+        run: |
+          ZIP_FILE=$(find . -maxdepth 3 -type f -name "*.zip" | head -n 1)
+          if [ -z "$ZIP_FILE" ]; then
+            echo "No .zip file found in repository."
+            exit 0
+          fi
+          echo "Extracting: $ZIP_FILE"
+          mkdir -p .tmp_extract
+          unzip -o "$ZIP_FILE" -d .tmp_extract
+
+          SRC_DIR=".tmp_extract"
+          if [ ! -f "$SRC_DIR/package.json" ] && [ ! -f "$SRC_DIR/settings.gradle.kts" ]; then
+            FOUND=$(find .tmp_extract -maxdepth 3 \( -name "package.json" -o -name "settings.gradle.kts" \) | head -n 1)
+            if [ -n "$FOUND" ]; then
+              SRC_DIR=$(dirname "$FOUND")
+            fi
+          fi
+
+          rm -rf "$SRC_DIR/.github/workflows"
+          cp -rf "$SRC_DIR"/. .
+          rm -rf .tmp_extract
+          rm -f "$ZIP_FILE"
+
+      - name: Commit and push extracted files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "Extract ZIP files for direct editing"
+          git push
